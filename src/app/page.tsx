@@ -8,15 +8,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Section } from "@/components/layout/Section";
 
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Navbar } from "@/components/layout/Navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
-      <div className="fixed right-6 top-6 z-50">
-        <ThemeToggle />
-      </div>
-      <Section className="pt-16 sm:pt-24 lg:pt-32">
+    <main
+      id="home"
+      className="min-h-screen overflow-hidden"
+    >
+      <Navbar />
+      <Section className="pt-32 sm:pt-36 lg:pt-40">
         <PageContainer>
           <div className="relative">
             <div className="pointer-events-none absolute -left-32 -top-32 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" />
