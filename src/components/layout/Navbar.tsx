@@ -15,11 +15,11 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 pointer-events-none px-4 pt-4 sm:px-6 lg:px-8">
       <nav
         aria-label="Primary navigation"
         className={cn(
-          "mx-auto w-full max-w-7xl",
+          "relative mx-auto w-full max-w-7xl pointer-events-auto",
           "px-4 py-2",
         )}
       >
@@ -59,7 +59,7 @@ export function Navbar() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="relative z-10 flex items-center gap-2 pointer-events-auto">
             <ThemeToggle />
 
             <a
@@ -87,7 +87,7 @@ export function Navbar() {
               aria-controls="mobile-navigation"
               aria-label={isOpen ? "Close navigation" : "Open navigation"}
               className={cn(
-                "inline-flex h-10 w-10 items-center justify-center",
+                "inline-flex h-10 w-10 touch-manipulation items-center justify-center",
                 "rounded-full border",
                 "border-slate-200/80 bg-white/70",
                 "text-slate-700",
@@ -113,47 +113,81 @@ export function Navbar() {
         <div
           id="mobile-navigation"
           className={cn(
-            "grid transition-[grid-template-rows,opacity] duration-300 lg:hidden",
-            isOpen
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0",
+            "lg:hidden",
+            isOpen ? "pointer-events-auto" : "pointer-events-none",
           )}
         >
-          <div className="overflow-hidden">
-            <div className="mt-3 border-t border-slate-200/70 pt-3 dark:border-white/10">
-              <div className="flex flex-col gap-1">
-                {navigationItems.map((item, index) => (
+          {/* Background blur */}
+          <button
+            type="button"
+            aria-label="Close navigation"
+            onClick={closeMenu}
+            className={cn(
+              "fixed inset-0 z-0",
+              "bg-white/10 backdrop-blur-md",
+              "dark:bg-slate-950/15",
+              "transition-opacity duration-300",
+              isOpen ? "opacity-100" : "opacity-0",
+            )}
+          />
+
+          {/* Glass navigation panel */}
+          <div
+            className={cn(
+              "relative z-10 grid transition-[grid-template-rows,opacity] duration-300",
+              isOpen
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0",
+            )}
+          >
+            <div className="overflow-hidden">
+              <div
+                className={cn(
+                  "mt-3 rounded-2xl border p-2",
+                  "border-white/70 bg-white/45",
+                  "shadow-xl shadow-slate-950/5",
+                  "backdrop-blur-2xl",
+                  "dark:border-white/10 dark:bg-slate-900/45",
+                  "dark:shadow-black/20",
+                )}
+              >
+                <div className="flex flex-col gap-1">
+                  {navigationItems.map((item, index) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenu}
+                      className={cn(
+                        "rounded-xl px-4 py-3",
+                        "text-sm font-medium",
+                        "text-slate-600",
+                        "transition-colors",
+                        "hover:bg-white/40 hover:text-slate-950",
+                        "dark:text-slate-300",
+                        "dark:hover:bg-white/10 dark:hover:text-white",
+                        index === 0 &&
+                          "bg-white/45 text-slate-950 dark:bg-white/10 dark:text-white",
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+
                   <a
-                    key={item.href}
-                    href={item.href}
+                    href="#contact"
                     onClick={closeMenu}
                     className={cn(
-                      "rounded-xl px-4 py-3",
-                      "text-sm font-medium",
-                      "text-slate-600",
-                      "transition-colors hover:bg-slate-100 hover:text-slate-950",
-                      "dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white",
-                      index === 0 &&
-                        "bg-slate-100/80 text-slate-950 dark:bg-white/10 dark:text-white",
+                      "mt-2 inline-flex items-center justify-center gap-2",
+                      "rounded-full bg-slate-950/95 px-4 py-3",
+                      "text-sm font-semibold text-white",
+                      "backdrop-blur-md",
+                      "dark:bg-white/95 dark:text-slate-950",
                     )}
                   >
-                    {item.label}
+                    Let&apos;s Talk
+                    <ArrowUpRight className="h-4 w-4" />
                   </a>
-                ))}
-
-                <a
-                  href="#contact"
-                  onClick={closeMenu}
-                  className={cn(
-                    "mt-2 inline-flex items-center justify-center gap-2",
-                    "rounded-full bg-slate-950 px-4 py-3",
-                    "text-sm font-semibold text-white",
-                    "dark:bg-white dark:text-slate-950",
-                  )}
-                >
-                  Let&apos;s Talk
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </div>
               </div>
             </div>
           </div>
