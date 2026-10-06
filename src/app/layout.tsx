@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,15 +16,20 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pavan Kumar | AI Engineer",
-  description: "Pavan Kumar is an AI Engineer building intelligent products with Generative AI, Agentic AI, LLMs, and modern cloud technologies.",
+  description:
+    "Pavan Kumar is an AI Engineer building intelligent products with Generative AI, Agentic AI, LLMs, and modern cloud technologies.",
 };
 
 const themeScript = `
 (function () {
   try {
     const storedTheme = localStorage.getItem("pavan-portfolio-theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = storedTheme || (systemPrefersDark ? "dark" : "light");
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme =
+      storedTheme || (systemPrefersDark ? "dark" : "light");
 
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -33,7 +40,9 @@ const themeScript = `
 })();
 `;
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -41,10 +50,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: themeScript,
+          }}
+        />
       </head>
 
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+      </body>
     </html>
   );
 }

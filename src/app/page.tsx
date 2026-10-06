@@ -1,6 +1,6 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
+
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Badge } from "@/components/ui/Badge";
 import { Tag } from "@/components/ui/Tag";
@@ -10,6 +10,8 @@ import { Section } from "@/components/layout/Section";
 
 import { Navbar } from "@/components/layout/Navbar";
 
+import { Hero } from "@/features/home/components/Hero";
+
 export default function Home() {
   return (
     <main
@@ -17,7 +19,8 @@ export default function Home() {
       className="min-h-screen overflow-hidden"
     >
       <Navbar />
-      <Section className="pt-32 sm:pt-36 lg:pt-40">
+      <Hero />
+      {/* <Section className="pt-32 sm:pt-36 lg:pt-40">
         <PageContainer>
           <div className="relative">
             <div className="pointer-events-none absolute -left-32 -top-32 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" />
@@ -57,7 +60,7 @@ export default function Home() {
             </div>
           </div>
         </PageContainer>
-      </Section>
+      </Section> */}
 
       <Section className="pt-0">
         <PageContainer>
