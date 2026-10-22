@@ -38,7 +38,7 @@ export function Hero() {
                   dark:text-slate-400
                 "
               >
-                AI Engineer
+                AI/ML Engineer
               </p>
 
               {/* Heading */}
@@ -113,7 +113,7 @@ export function Hero() {
               {/* CTAs */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
-                  href="#projects"
+                  href="projects"
                   className="
                     inline-flex
                     items-center
@@ -142,7 +142,7 @@ export function Hero() {
                 </a>
 
                 <a
-                  href="/resume/Pavan-Kumar-Resume.pdf"
+                  href="/resume"
                   className="
                     inline-flex
                     items-center
@@ -167,7 +167,7 @@ export function Hero() {
                     dark:hover:bg-white/[0.08]
                   "
                 >
-                  Download Resume
+                  View Resume
                   <ArrowDownToLine className="h-4 w-4" />
                 </a>
               </div>

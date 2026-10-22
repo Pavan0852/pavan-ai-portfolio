@@ -186,7 +186,7 @@ export function AboutSection() {
             {/* CTA */}
             <div className="mt-8">
               <a
-                href="/resume/Pavan-Kumar-Resume.pdf"
+                href="/resume"
                 className="
                   inline-flex
                   items-center

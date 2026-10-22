@@ -117,7 +117,7 @@ export function ProfileCard() {
             </p>
 
             <p className="mt-0.5 truncate text-xs font-semibold text-slate-700 dark:text-slate-200">
-              AI Engineer · Product · Research
+              AI/ML Engineer · Product · Research
             </p>
           </div>
 
